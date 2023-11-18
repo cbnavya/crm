@@ -1,0 +1,61 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form action="" method="post">
+                {%csrf_token%}
+                <div class="d-flex">
+                    <input type="text" name="box" class="form-control me-2 ">
+                    <button type="submit" class="btn btn-primary ">SEARCH</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table mt-5 table-light table-bordered ">
+                <tr class="table-secondary">
+                    <td class="fw-bold">Id</td>
+                    <td class="fw-bold">Name</td>
+                    <td class="fw-bold">Department</td>
+                    <td class="fw-bold">Salary</td>
+                    <td class="fw-bold">Email</td>
+                    <td class="fw-bold ">Dob</td>
+                    <td class="fw-bold ">Action</td>
+                </tr>
+                {%for emp in data%}
+                <tr class="fw-semibold">
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                    <td>{{emp.salary}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.dob}}</td>
+                    <td>
+                        <a href="{%url 'emp_detail' emp.id%}">view /</a>
+                        <a href="{%url 'emp_delete' emp.id%}">delete /</a>
+                        <a href="{%url 'emp_update' emp.id%}">update</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+<div class="ms-4 text-center mt-4 fw-semibold">
+   >> Filter By  Department
+    {%for dep in departments%}
+        <a href="{%url 'emp_list'%}?department={{dep}}">{{dep}}</a>
+    {%endfor%}
+</div>
+{%endblock%}
