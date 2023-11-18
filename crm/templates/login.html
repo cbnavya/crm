@@ -15,6 +15,7 @@
     {%endfor%}
     <div class="container d-flex justify-content-center mt-5 ">
         <form action="" method="post" class="fw-semibold w-50 p-5 border shadow">
+            <img src="{%static 'images/employee icon.jpg'%}" alt="" height="200px" width="200px" class="rounded mx-auto d-block">
             <h1 class="fw-bold text-center text-decoration-underline">LOGIN</h1>
             {%csrf_token%}
             {{form.as_p}}
